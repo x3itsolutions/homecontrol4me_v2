@@ -24,7 +24,7 @@ byte packetBuffer[ NTP_PACKET_SIZE]; //buffer to hold incoming and outgoing pack
 EthernetUDP Udp;
 
 time_t prevDisplay = 0; // when the digital clock was displayed
-const  long timeZoneOffset = -3600L; // set this to the offset in seconds to your local time;
+const  long timeZoneOffset = 3600L; // offset in seconds for german time (utc + 1h);
 AlarmID_t timers[10];
 
 void setup() 
@@ -117,7 +117,7 @@ unsigned long getNtpTime()
     // this is NTP time (seconds since Jan 1 1900):
     unsigned long secsSince1900 = highWord << 16 | lowWord;  
     // Unix time starts on Jan 1 1970. In seconds, that's 2208988800:
-    const unsigned long seventyYears = 2208988800UL + timeZoneOffset;     
+    const unsigned long seventyYears = 2208988800UL - timeZoneOffset;     
     // subtract seventy years:
     unsigned long epoch = secsSince1900 - seventyYears;  
     return epoch;
