@@ -1,9 +1,3 @@
-/*
- * Time_NTP.pde
- * Example showing time sync to NTP time source
- *
- */
- 
 #include <Time.h> 
 #include <TimeAlarms.h>
 #include <SPI.h>    
